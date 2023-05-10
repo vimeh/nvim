@@ -18,6 +18,7 @@ return {
   },
   {
     "HiPhish/nvim-ts-rainbow2",
+    lazy = false,
     config = function()
       require("nvim-treesitter.configs").setup({
         rainbow = {
@@ -31,13 +32,12 @@ return {
         },
       })
     end,
-    lazy = true,
   },
   {
     "norcalli/nvim-colorizer.lua",
+    lazy = false,
     config = function()
       require("colorizer").setup()
     end,
-    lazy = true,
   },
 }
