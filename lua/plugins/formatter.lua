@@ -30,6 +30,9 @@ return {
               }
             end,
           },
+          javascript = {
+            require("formatter.filetypes.javascript").prettiereslint,
+          },
         },
       })
     end,
