@@ -13,7 +13,7 @@ return {
         maid = {},
         content_editable = true,
       }
-      vim.g.mkdp_markdown_css = "/Users/vinay/notes/md.css"
+      vim.g.mkdp_markdown_css = "/Users/vinay/v/notes/md.css"
     end,
   },
 }
