@@ -4,6 +4,8 @@ return {
     servers = {
       ruff_lsp = {},
       pyright = {},
+      tsserver = {},
+      eslint = {},
     },
     capabilities = {
       textDocument = {
