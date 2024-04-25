@@ -1,40 +1,13 @@
 return {
   {
-    "mhartington/formatter.nvim",
-    cmd = "Format",
-    config = function()
-      require("formatter").setup({
-        logging = true,
-        log_level = vim.log.levels.WARN,
-        filetype = {
-          sql = {
-            function()
-              return {
-                exe = "pg_format",
-                args = {
-                  "-u 2",
-                  "-U 1",
-                  "-s 2",
-                  "-e",
-                },
-                stdin = true,
-              }
-            end,
-          },
-          python = {
-            function()
-              return {
-                exe = "black",
-                args = { "--quiet" },
-                stdin = false,
-              }
-            end,
-          },
-          javascript = {
-            require("formatter.filetypes.javascript").prettiereslint,
-          },
-        },
-      })
-    end,
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        py = { "ruff" },
+      },
+      formatters = {
+        ruff = { prepend_args = { "format" } },
+      },
+    },
   },
 }
