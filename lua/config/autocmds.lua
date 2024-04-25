@@ -4,8 +4,8 @@
 
 -- enable Copilot automatically for lua and python
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "lua", "python" },
+  pattern = { "lua", "python", "rust" },
   callback = function()
-    vim.cmd("Copilot")
+    vim.cmd("Copilot enable")
   end,
 })
