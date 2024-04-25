@@ -7,6 +7,22 @@ return {
       require("catppuccin").setup({
         flavour = "macchiato",
         dim_inactive = { enabled = true, shade = "dark", percentage = 0.15 },
+        integrations = {
+          cmp = true,
+          gitsigns = true,
+          neotree = true,
+          treesitter = true,
+          notify = true,
+          mini = {
+            enabled = true,
+            indentscope_color = "",
+          },
+          navic = {
+            enabled = true,
+            custom_bg = "NONE", -- "lualine" will set background to mantle
+          },
+          leap = true,
+        },
       })
     end,
   },

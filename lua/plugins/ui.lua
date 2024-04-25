@@ -25,4 +25,13 @@ return {
   {
     "nvim-treesitter/nvim-treesitter-context",
   },
+  {
+    "SmiteshP/nvim-navic",
+    config = function()
+      require("nvim-navic").setup({
+        -- required for catppucin to work
+        highlight = true,
+      })
+    end,
+  },
 }
