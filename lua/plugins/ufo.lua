@@ -1,6 +1,6 @@
 local handler = function(virtText, lnum, endLnum, width, truncate)
   local newVirtText = {}
-  local suffix = ("  %d "):format(endLnum - lnum)
+  local suffix = (" 󰁂 %d "):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
   local targetWidth = width - sufWidth
   local curWidth = 0
@@ -29,8 +29,9 @@ end
 return {
   "kevinhwang91/nvim-ufo",
   dependencies = { "kevinhwang91/promise-async" },
-  event = "VeryLazy",
+  lazy = false,
   opts = {
+    filetype_exclude = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
     fold_virt_text_handler = handler,
     preview = {
       mappings = {
@@ -40,28 +41,25 @@ return {
         scrollD = "<C-d>",
       },
     },
-    provider_selector = function(_, filetype, buftype)
-      local function handleFallbackException(bufnr, err, providerName)
-        if type(err) == "string" and err:match("UfoFallbackException") then
-          return require("ufo").getFolds(bufnr, providerName)
-        else
-          return require("promise").reject(err)
-        end
-      end
-
-      return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
-        or function(bufnr)
-          return require("ufo")
-            .getFolds(bufnr, "lsp")
-            :catch(function(err)
-              return handleFallbackException(bufnr, err, "treesitter")
-            end)
-            :catch(function(err)
-              return handleFallbackException(bufnr, err, "indent")
-            end)
-        end
-    end,
+    -- provider_selector = function(bufnr, filetype, buftype)
+    --   return { "lsp", "treesitter", "indent" }
+    -- end,
   },
+  config = function(_, opts)
+    vim.api.nvim_create_autocmd("FileType", {
+      group = vim.api.nvim_create_augroup("local_detach_ufo", { clear = true }),
+      pattern = opts.filetype_exclude,
+      callback = function()
+        require("ufo").detach()
+      end,
+    })
+
+    vim.o.foldcolumn = "1" -- '0' is not bad
+    vim.o.foldenable = true -- enable fold for nvim-ufo
+    vim.o.foldlevel = 99 -- set high foldlevel for nvim-ufo
+    vim.o.foldlevelstart = 99 -- start with all code unfolded
+    require("ufo").setup(opts)
+  end,
   keys = {
     {
       "zR",

@@ -1,12 +1,26 @@
 return {
   {
+    "neovim/nvim-lspconfig",
+    servers = {
+      ruff_lsp = {},
+      pyright = {},
+    },
+    capabilities = {
+      textDocument = {
+        foldingRange = {
+          dynamicRegistration = false,
+          lineFoldingOnly = true,
+        },
+      },
+    },
+  },
+  {
     "hedyhli/outline.nvim",
     lazy = true,
     cmd = { "Outline", "OutlineOpen" },
     keys = { -- Example mapping to toggle outline
       { "<leader>cs", "<cmd>Outline<CR>", desc = "Toggle outline" },
     },
-    opts = {},
     config = function()
       require("outline").setup({})
     end,
@@ -30,15 +44,6 @@ return {
         "typescript",
         "vim",
         "yaml",
-      },
-    },
-    {
-      "neovim/nvim-lspconfig",
-      opts = {
-        servers = {
-          ruff_lsp = {},
-          pyright = {},
-        },
       },
     },
   },
