@@ -13,10 +13,16 @@ return {
     },
   },
   {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    config = true,
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { -- Example mapping to toggle outline
+      { "<leader>cs", "<cmd>Outline<CR>", desc = "Toggle outline" },
+    },
+    opts = {},
+    config = function()
+      require("outline").setup({})
+    end,
   },
   -- add more treesitter parsers
   {
