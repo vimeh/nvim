@@ -11,7 +11,8 @@ return {
       {
         "<leader>tt",
         function()
-          require("toggleterm").toggle()
+          local count = vim.v.count1
+          require("toggleterm").toggle(count, 30, Util.root.get(), "horizontal")
         end,
         desc = "Toggle Terminal",
       },
@@ -19,7 +20,7 @@ return {
         "<leader>t-",
         function()
           local count = vim.v.count1
-          require("toggleterm").toggle(count, 15, Util.root.get(), "horizontal")
+          require("toggleterm").toggle(count, 30, Util.root.get(), "horizontal")
         end,
       },
       {
