@@ -1,11 +1,16 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    servers = {
-      ruff_lsp = {},
-      pyright = {},
-      tsserver = {},
-      eslint = {},
+    opts = {
+      servers = {
+        ruff_lsp = {},
+        pyright = {},
+        tsserver = {},
+        eslint = {},
+        html = {
+          filetypes = { "html", "htmldjango", "templ" },
+        },
+      },
     },
     capabilities = {
       textDocument = {
