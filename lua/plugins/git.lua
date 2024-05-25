@@ -6,7 +6,7 @@ return {
       { "nvim-lua/plenary.nvim" },
       { "nvim-tree/nvim-web-devicons" },
     },
-    lazy = false,
+    lazy = true,
     config = function()
       -- vim.opt.fillchars = "diff:╱"
       vim.opt.fillchars = "diff:░"
@@ -45,5 +45,4 @@ return {
       { "<leader>gbf", ":GitBlameCopyFileURL<CR>", desc = "Copy file URL" },
     },
   },
-
 }
