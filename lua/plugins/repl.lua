@@ -47,6 +47,7 @@ return {
         ignore_blank_lines = true, -- ignore blank lines when sending visual select lines
       })
     end,
+    lazy = true,
     event = "VeryLazy",
     keys = {
       { "<space>rs", "<cmd>IronRepl<cr>", desc = "Open repl" },
