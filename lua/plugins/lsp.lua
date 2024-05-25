@@ -10,6 +10,14 @@ return {
         html = {
           filetypes = { "html", "htmldjango", "templ" },
         },
+        gopls = {
+          gofumpt = true,
+          staticcheck = true,
+          analyses = {
+            unusedparams = true,
+            shadow = true,
+          },
+        },
       },
     },
     capabilities = {
@@ -41,6 +49,7 @@ return {
         "html",
         "javascript",
         "json",
+        "go",
         "lua",
         "markdown",
         "markdown_inline",
