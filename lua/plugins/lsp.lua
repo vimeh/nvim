@@ -21,6 +21,11 @@ return {
         templ = {},
         postgres_lsp = {},
       },
+      setup = {
+        rust_analyzer = function()
+          return true
+        end,
+      },
     },
     capabilities = {
       textDocument = {
