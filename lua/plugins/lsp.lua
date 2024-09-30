@@ -19,7 +19,11 @@ return {
         tailwindcss = {},
         htmx = {},
         templ = {},
-        postgres_lsp = {},
+        marksman = {
+          -- TODO: turn off MD013/line-length check
+          -- unclear rn which lsp is throwing this
+          -- markdownlint; might be marksman?
+        },
       },
       setup = {
         rust_analyzer = function()
