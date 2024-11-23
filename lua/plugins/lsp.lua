@@ -3,7 +3,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        ruff_lsp = {},
+        ruff = {},
         pyright = {},
         tsserver = {},
         eslint = {},
@@ -24,6 +24,8 @@ return {
           -- unclear rn which lsp is throwing this
           -- markdownlint; might be marksman?
         },
+        postgres_lsp = {},
+        denols = {},
       },
       setup = {
         rust_analyzer = function()
