@@ -3,7 +3,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        python = { "ruff_format", "injected" },
+        python = { "ruff_format", "ruff_lint", "ruff_organize_imports", "injected" },
         javascript = { "biome", "injected" },
       },
       formatters = {
