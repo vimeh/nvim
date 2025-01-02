@@ -34,7 +34,7 @@ return {
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
-    lazy = true,
+    lazy = false,
     config = function()
       local rainbow_delimiters = require("rainbow-delimiters")
       require("rainbow-delimiters.setup").setup({
