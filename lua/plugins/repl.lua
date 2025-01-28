@@ -1,6 +1,6 @@
 return {
   {
-    "hkupty/iron.nvim",
+    "Vigemus/iron.nvim",
     config = function()
       local iron = require("iron.core")
       iron.setup({
@@ -19,7 +19,7 @@ return {
             },
           },
           -- open repl as a vertical split
-          repl_open_cmd = require("iron.view").split("30%"),
+          repl_open_cmd = require("iron.view").split.botright(30),
         },
         -- Iron doesn't set keymaps by default anymore.
         -- You can set them here or manually add keymaps to the functions in iron.core
