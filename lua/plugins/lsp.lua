@@ -3,25 +3,11 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
-        ruff = {},
-        pyright = {},
-        tsserver = {},
-        html = {},
-        tailwindcss = {},
-        htmx = {},
-        templ = {},
         marksman = {
           -- TODO: turn off MD013/line-length check
           -- unclear rn which lsp is throwing this
           -- markdownlint; might be marksman?
         },
-        postgres_lsp = {},
-        denols = {},
-      },
-      setup = {
-        rust_analyzer = function()
-          return true
-        end,
       },
     },
     capabilities = {
