@@ -60,6 +60,7 @@ return {
         "python",
         "query",
         "regex",
+        "rust",
         "templ",
         "tsx",
         "typescript",
@@ -67,12 +68,5 @@ return {
         "yaml",
       },
     },
-  },
-  -- enable supertab: https://www.lazyvim.org/configuration/recipes#supertab
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
   },
 }

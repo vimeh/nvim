@@ -31,16 +31,7 @@ return {
     },
   },
   {
-    "milanglacier/minuet-ai.nvim",
-    config = function()
-      require("minuet").setup({
-        -- Your configuration options here
-      })
-    end,
-  },
-  {
     "olimorris/codecompanion.nvim",
-    config = true,
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -53,14 +44,14 @@ return {
           adapter = "anthropic",
         },
         -- tools = {
-        --   ["mcp"] = {
-        --     callback = require("mcphub.extensions.codecompanion"),
-        --     description = "Call tools and resources from the MCP Servers",
-        --     opts = {
-        --       -- user_approval = true,
-        --       requires_approval = true,
-        --     },
+        -- ["mcp"] = {
+        --   callback = require("mcphub.extensions.codecompanion"),
+        --   description = "Call tools and resources from the MCP Servers",
+        --   opts = {
+        --     -- user_approval = true,
+        --     requires_approval = true,
         --   },
+        -- },
         -- },
       },
       opts = {
@@ -74,7 +65,8 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
     },
-    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+    cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
+    build = "bun install -g mcp-hub@latest", -- Installs required mcp-hub npm module
     config = function()
       require("mcphub").setup({
         -- Required options
@@ -333,5 +325,23 @@ return {
       no_auto_close = false, -- Never closes the window automatically.
       debug = false, -- Prints errors and the command which is run.
     },
+  },
+  {
+    "Davidyz/VectorCode",
+    version = "*", -- optional, depending on whether you're on nightly or release
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "VectorCode", -- if you're lazy-loading VectorCode
+  },
+  {
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "zbirenbaum/copilot.lua" },
+      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    opts = {
+      -- See Configuration section for options
+    },
+    -- See Commands section for default commands if you want to lazy load on them
   },
 }
