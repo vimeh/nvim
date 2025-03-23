@@ -2,7 +2,7 @@ return {
   {
     "dlants/magenta.nvim",
     lazy = false, -- you could also bind to <leader>mt
-    build = "npm install --frozen-lockfile",
+    build = "bun install --frozen-lockfile",
     opts = {
       provider = "anthropic",
       anthropic = {
@@ -29,66 +29,6 @@ return {
         },
       },
     },
-  },
-  {
-    "olimorris/codecompanion.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-treesitter/nvim-treesitter",
-      -- "ravitemer/mcphub.nvim",
-    },
-    opts = {
-      strategies = {
-        -- Change the default chat adapter
-        chat = {
-          adapter = "anthropic",
-        },
-        -- tools = {
-        -- ["mcp"] = {
-        --   callback = require("mcphub.extensions.codecompanion"),
-        --   description = "Call tools and resources from the MCP Servers",
-        --   opts = {
-        --     -- user_approval = true,
-        --     requires_approval = true,
-        --   },
-        -- },
-        -- },
-      },
-      opts = {
-        -- Set debug logging
-        log_level = "DEBUG",
-      },
-    },
-  },
-  {
-    "ravitemer/mcphub.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
-    },
-    cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
-    build = "bun install -g mcp-hub@latest", -- Installs required mcp-hub npm module
-    config = function()
-      require("mcphub").setup({
-        -- Required options
-        port = 3000, -- Port for MCP Hub server
-        config = vim.fn.expand("~/mcpservers.json"), -- Absolute path to config file
-
-        -- Optional options
-        on_ready = function(hub)
-          -- Called when hub is ready
-        end,
-        on_error = function(err)
-          -- Called on errors
-        end,
-        shutdown_delay = 0, -- Wait 0ms before shutting down server after last client exits
-        log = {
-          level = vim.log.levels.WARN,
-          to_file = false,
-          file_path = nil,
-          prefix = "MCPHub",
-        },
-      })
-    end,
   },
   {
     "yetone/avante.nvim",
@@ -236,7 +176,7 @@ return {
       "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
       "ibhagwan/fzf-lua", -- for file_selector provider fzf
       "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua", -- for providers='copilot'
+      -- "zbirenbaum/copilot.lua", -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
@@ -265,65 +205,35 @@ return {
     },
   },
   {
-    "melbaldove/llm.nvim",
-    dependencies = { "nvim-neotest/nvim-nio" },
-    keys = {
-      {
-        "<leader>,",
-        function()
-          require("llm").prompt({ replace = false, service = "openai" })
-        end,
-        mode = "n",
-        desc = "Prompt LLM",
-      },
-      {
-        "<leader>,",
-        function()
-          require("llm").prompt({ replace = false, service = "openai" })
-        end,
-        mode = "v",
-        desc = "Prompt LLM",
-      },
-      {
-        "<leader>.",
-        function()
-          require("llm").prompt({ replace = true, service = "openai" })
-        end,
-        mode = "v",
-        desc = "Prompt LLM and replace",
-      },
-    },
-  },
-  {
     "David-Kunz/gen.nvim",
     opts = {
-      model = "llama3", -- The default model to use.
-      host = "localhost", -- The host running the Ollama service.
-      port = "11434", -- The port on which the Ollama service is listening.
-      quit_map = "q", -- set keymap for close the response window
+      model = "mlx-community/qwen2.5-coder-0.5b-instruct",
+      quit_map = "q", -- set keymap to close the response window
       retry_map = "<c-r>", -- set keymap to re-send the current prompt
-      init = function(options)
-        pcall(io.popen, "ollama serve > /dev/null 2>&1 &")
-      end,
-      -- Function to initialize Ollama
+      accept_map = "<c-cr>", -- set keymap to replace the previous selection with the last result
+      host = "localhost", -- The host running the Ollama service.
+      port = "1234", -- The port on which the Ollama service is listening.
+      display_mode = "float", -- The display mode. Can be "float" or "split" or "horizontal-split".
+      show_prompt = false, -- Shows the prompt submitted to Ollama. Can be true (3 lines) or "full".
+      show_model = false, -- Displays which model you are using at the beginning of your chat session.
+      no_auto_close = false, -- Never closes the window automatically.
+      file = false, -- Write the payload to a temporary file to keep the command short.
+      hidden = false, -- Hide the generation window (if true, will implicitly set `prompt.replace = true`), requires Neovim >= 0.10
       command = function(options)
         local body = { model = options.model, stream = true }
         return "curl --silent --no-buffer -X POST http://"
           .. options.host
           .. ":"
           .. options.port
-          .. "/api/chat -d $body"
+          .. "/v1/chat/completions -d $body"
       end,
       -- The command for the Ollama service. You can use placeholders $prompt, $model and $body (shellescaped).
       -- This can also be a command string.
       -- The executed command must return a JSON object with { response, context }
       -- (context property is optional).
       -- list_models = '<omitted lua function>', -- Retrieves a list of model names
-      display_mode = "float", -- The display mode. Can be "float" or "split".
-      show_prompt = false, -- Shows the prompt submitted to Ollama.
-      show_model = false, -- Displays which model you are using at the beginning of your chat session.
-      no_auto_close = false, -- Never closes the window automatically.
-      debug = false, -- Prints errors and the command which is run.
+      result_filetype = "markdown", -- Configure filetype of the result buffer
+      debug = true, -- Prints errors and the command which is run.
     },
   },
   {
@@ -332,16 +242,16 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     cmd = "VectorCode", -- if you're lazy-loading VectorCode
   },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "zbirenbaum/copilot.lua" },
-      { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
-    },
-    build = "make tiktoken", -- Only on MacOS or Linux
-    opts = {
-      -- See Configuration section for options
-    },
-    -- See Commands section for default commands if you want to lazy load on them
-  },
+  --   {
+  --     "CopilotC-Nvim/CopilotChat.nvim",
+  --     dependencies = {
+  --       { "zbirenbaum/copilot.lua" },
+  --       { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+  --     },
+  --     build = "make tiktoken", -- Only on MacOS or Linux
+  --     opts = {
+  --       -- See Configuration section for options
+  --     },
+  --     -- See Commands section for default commands if you want to lazy load on them
+  --   },
 }
