@@ -8,6 +8,19 @@ return {
           -- unclear rn which lsp is throwing this
           -- markdownlint; might be marksman?
         },
+        -- TODO: figure out this later
+        -- ["rust-analyzer"] = {
+        --   -- Other Settings ...
+        --   procMacro = {
+        --     ignored = {
+        --       leptos_macro = {
+        --         -- optional: --
+        --         -- "component",
+        --         "server",
+        --       },
+        --     },
+        --   },
+        -- },
       },
     },
     capabilities = {
