@@ -6,22 +6,43 @@ return {
     config = function()
       require("catppuccin").setup({
         flavour = "macchiato",
+        transparent_background = true,
         dim_inactive = { enabled = true, shade = "dark", percentage = 0.15 },
         integrations = {
-          cmp = true,
+          blink_cmp = true,
+          dadbod_ui = true,
+          dap = true,
+          dap_ui = true,
+          dashboard = true,
+          diffview = true,
+          fzf = true,
           gitsigns = true,
+          grug_far = true,
+          leap = true,
+          lsp_trouble = true,
+          markdown = true,
+          mason = true,
           neotree = true,
-          treesitter = true,
+          noice = true,
           notify = true,
+          nvim_surround = true,
+          octo = true,
+          rainbow_delimiters = true,
+          render_markdown = true,
+          telescope = true,
+          treesitter = true,
+          treesitter_context = true,
+          ufo = true,
+          which_key = true,
+          snacks = {
+            enabled = true,
+          },
           mini = {
             enabled = true,
-            indentscope_color = "",
           },
           navic = {
             enabled = true,
-            custom_bg = "NONE", -- "lualine" will set background to mantle
           },
-          leap = true,
         },
       })
     end,
