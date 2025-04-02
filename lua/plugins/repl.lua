@@ -28,16 +28,9 @@ return {
         keymaps = {
           send_motion = "<space>rc",
           visual_send = "<space>rc",
-          send_file = "<space>rf",
-          send_line = "<space>rl",
-          send_mark = "<space>rm",
-          mark_motion = "<space>mc",
-          mark_visual = "<space>mc",
-          remove_mark = "<space>md",
           cr = "<space>r<cr>",
           interrupt = "<space>r<space>",
           exit = "<space>rq",
-          clear = "<space>rcl",
         },
         -- If the highlight is on, you can change how it looks
         -- For the available options, check nvim_set_hl
