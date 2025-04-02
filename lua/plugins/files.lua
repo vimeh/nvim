@@ -11,4 +11,10 @@ return {
       { "-", "<cmd>Oil<cr>", desc = "Open parent directory" },
     },
   },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      image = {},
+    },
+  },
 }
