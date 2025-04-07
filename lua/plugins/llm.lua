@@ -1,5 +1,13 @@
 return {
   {
+    -- until this merges: https://github.com/LazyVim/LazyVim/pull/5900
+    "zbirenbaum/copilot.lua",
+    optional = true,
+    opts = function()
+      require("copilot.api").status = require("copilot.status")
+    end,
+  },
+  {
     "yetone/avante.nvim",
     event = "VeryLazy",
     version = false,
