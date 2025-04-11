@@ -6,6 +6,9 @@ return {
         python = { "ruff_format", "ruff_lint", "ruff_organize_imports", "injected" },
         javascript = { "biome", "biome-check", "biome-organize-imports" },
         typescript = { "biome", "biome-check", "biome-organize-imports" },
+        -- uv tool install mdformat --with mdformat-gfm,mdformat-ruff,mdformat-frontmatter
+        markdown = { "mdformat" },
+        ["markdown.mdx"] = { "mdformat" },
       },
       formatters = {
         injected = {
