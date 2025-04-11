@@ -6,6 +6,18 @@ return {
     },
   },
   {
+    "nvim-lualine/lualine.nvim",
+    event = "VeryLazy",
+    opts = function(_, opts)
+      -- remove the clock
+      table.remove(opts.sections.lualine_z)
+      -- remove the location
+      table.remove(opts.sections.lualine_y)
+      -- remove the progress
+      table.remove(opts.sections.lualine_y)
+    end,
+  },
+  {
     "folke/tokyonight.nvim",
     lazy = true,
     opts = { style = "storm", dim_inactive = false },
