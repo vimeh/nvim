@@ -20,7 +20,7 @@ return {
   {
     "folke/tokyonight.nvim",
     lazy = true,
-    opts = { style = "storm", dim_inactive = false },
+    opts = { style = "moon", dim_inactive = false },
   },
   {
     "HiPhish/rainbow-delimiters.nvim",
