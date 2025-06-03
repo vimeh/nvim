@@ -14,17 +14,23 @@ return {
     opts = {
       provider = "gemini",
       auto_suggestions_provider = "gemini",
-      gemini = {
-        model = "gemini-2.5-pro-exp-03-25",
-        timeout = 30000,
-        temperature = 0,
-        max_tokens = 131072,
-      },
-      claude = {
-        endpoint = "https://api.anthropic.com",
-        model = "claude-3-5-sonnet-20241022",
-        temperature = 0,
-        max_tokens = 4096,
+      providers = {
+        gemini = {
+          model = "gemini-2.5-pro-exp-03-25",
+          timeout = 30000,
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 131072,
+          },
+        },
+        claude = {
+          endpoint = "https://api.anthropic.com",
+          model = "claude-3-5-sonnet-20241022",
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 4096,
+          },
+        },
       },
       behaviour = {
         auto_suggestions = false, -- Experimental stage
