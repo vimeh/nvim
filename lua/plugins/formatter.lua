@@ -9,6 +9,7 @@ return {
         -- uv tool install mdformat --with mdformat-gfm,mdformat-ruff,mdformat-frontmatter
         markdown = { "mdformat" },
         ["markdown.mdx"] = { "mdformat" },
+        typst = { "typstyle" },
       },
       formatters = {
         injected = {
